@@ -2,7 +2,7 @@
 title: "Sync"
 description: "Real-time CRDT sync across devices"
 id: "diaryx.sync"
-version: "1.2.1"
+version: "0.1.0"
 author: "Diaryx Team"
 license: "PolyForm Shield 1.0.0"
 repository: "https://github.com/diaryx-org/plugin-sync"
@@ -10,10 +10,10 @@ categories: ["sync", "collaboration"]
 tags: ["sync", "crdt", "realtime"]
 capabilities: ["workspace_events", "file_events", "crdt_commands", "sync_transport", "custom_commands"]
 artifact:
-  url: ""
-  sha256: ""
-  size: 0
-  published_at: ""
+  url: "https://github.com/diaryx-org/plugin-sync/releases/download/v0.1.0/diaryx_sync_extism.wasm"
+  sha256: "565d40298ae70b6c418ed1c660eec62c825008c98f1fe2008d8f0f386e684296"
+  size: 2073556
+  published_at: "2026-03-05T01:15:02Z"
 ui:
   - slot: SettingsTab
     id: sync-settings
