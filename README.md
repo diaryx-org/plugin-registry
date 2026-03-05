@@ -4,7 +4,7 @@ Central registry for all official and community Diaryx plugins. This repo is the
 
 ## How it works
 
-Each plugin has a metadata file in `plugins/` (e.g., `plugins/diaryx.math.md`). On push to `main`, the CI workflow assembles all entries into a single `registry.md` and uploads it to the CDN.
+Each plugin has a metadata file in `plugins/` (e.g., `plugins/diaryx.math.md`). On push to `master`, the CI workflow assembles all entries into a single `registry.md`, mirrors plugin `.wasm` artifacts to the CDN, and publishes CDN-backed artifact URLs.
 
 ## Plugin entry format
 
@@ -41,7 +41,7 @@ Short description of the plugin for the marketplace listing.
 
 ## Scripts
 
-- `scripts/assemble-registry.py` — Assembles `plugins/*.md` into `registry.md`
+- `scripts/assemble-registry.py` — Assembles `plugins/*.md` into `registry.md` and can rewrite artifact URLs to CDN paths
 
 ## License
 

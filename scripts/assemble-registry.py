@@ -9,11 +9,11 @@ and produces a single registry.md with schema_version 2.
 """
 
 import argparse
-import os
 import sys
 import re
 import json
 from pathlib import Path
+from urllib.parse import urlparse
 
 try:
     import yaml
@@ -24,6 +24,18 @@ except ImportError:
 
 REQUIRED_FIELDS = ["title", "description", "id", "version", "author", "license", "repository"]
 CANONICAL_ID_RE = re.compile(r"^[a-z][a-z0-9]*(\.[a-z][a-z0-9]*)*$")
+
+
+def normalize_sha256(value: str) -> str:
+    return value.strip().lower().removeprefix("sha256:")
+
+
+def artifact_filename_from_url(url: str, plugin_id: str) -> str:
+    parsed = urlparse(url)
+    name = Path(parsed.path).name
+    if name:
+        return name
+    return f"{plugin_id.replace('.', '_')}.wasm"
 
 
 def parse_frontmatter(path: Path) -> tuple[dict, str]:
@@ -64,10 +76,15 @@ def validate_plugin(meta: dict, path: Path) -> list[str]:
     return errors
 
 
-def assemble_registry(plugins_dir: Path, cdn_base: str) -> tuple[str, list[dict]]:
+def assemble_registry(
+    plugins_dir: Path,
+    cdn_base: str,
+    rewrite_artifact_urls: bool = False,
+) -> tuple[dict, list[dict], list[dict]]:
     """Assemble all plugin entries into registry YAML and markdown."""
     entries = []
     all_errors = []
+    artifact_plan: list[dict] = []
 
     for md_file in sorted(plugins_dir.glob("*.md")):
         try:
@@ -96,7 +113,27 @@ def assemble_registry(plugins_dir: Path, cdn_base: str) -> tuple[str, list[dict]
         }
 
         if "artifact" in meta and isinstance(meta["artifact"], dict):
-            entry["artifact"] = meta["artifact"]
+            artifact = dict(meta["artifact"])
+            source_url = str(artifact.get("url") or "").strip()
+            if rewrite_artifact_urls and source_url:
+                filename = artifact_filename_from_url(source_url, meta["id"])
+                s3_key = f"plugins/artifacts/{meta['id']}/{meta['version']}/{filename}"
+                cdn_url = f"{cdn_base.rstrip('/')}/{s3_key}"
+                artifact_plan.append(
+                    {
+                        "id": meta["id"],
+                        "version": meta["version"],
+                        "filename": filename,
+                        "source_url": source_url,
+                        "cdn_url": cdn_url,
+                        "s3_key": s3_key,
+                        "sha256": normalize_sha256(str(artifact.get("sha256", ""))),
+                        "size": artifact.get("size"),
+                    }
+                )
+                artifact["url"] = cdn_url
+
+            entry["artifact"] = artifact
 
         if "ui" in meta:
             entry["ui"] = meta["ui"]
@@ -127,7 +164,7 @@ def assemble_registry(plugins_dir: Path, cdn_base: str) -> tuple[str, list[dict]
     from datetime import datetime, timezone
     registry_meta["generated_at"] = datetime.now(timezone.utc).isoformat()
 
-    return registry_meta, entries
+    return registry_meta, entries, artifact_plan
 
 
 def write_registry_md(registry_meta: dict, output: Path):
@@ -151,11 +188,26 @@ def write_registry_md(registry_meta: dict, output: Path):
     print(f"Wrote {output} ({len(registry_meta['plugins'])} plugins)")
 
 
+def write_artifact_plan(plan: list[dict], output: Path):
+    output.write_text(json.dumps(plan, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    print(f"Wrote {output} ({len(plan)} artifacts)")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Assemble Diaryx plugin registry")
     parser.add_argument("--plugins-dir", default="plugins", help="Directory containing plugin .md files")
     parser.add_argument("--output", default="registry.md", help="Output registry file")
     parser.add_argument("--cdn-base", default="https://cdn.diaryx.org", help="CDN base URL")
+    parser.add_argument(
+        "--rewrite-artifact-urls",
+        action="store_true",
+        help="Rewrite artifact.url entries to CDN paths and emit an upload plan",
+    )
+    parser.add_argument(
+        "--artifact-plan-out",
+        default=None,
+        help="Optional JSON file for artifact upload plan",
+    )
     args = parser.parse_args()
 
     plugins_dir = Path(args.plugins_dir)
@@ -163,8 +215,14 @@ def main():
         print(f"ERROR: plugins directory not found: {plugins_dir}", file=sys.stderr)
         sys.exit(1)
 
-    registry_meta, entries = assemble_registry(plugins_dir, args.cdn_base)
+    registry_meta, entries, artifact_plan = assemble_registry(
+        plugins_dir,
+        args.cdn_base,
+        rewrite_artifact_urls=args.rewrite_artifact_urls,
+    )
     write_registry_md(registry_meta, Path(args.output))
+    if args.artifact_plan_out:
+        write_artifact_plan(artifact_plan, Path(args.artifact_plan_out))
 
     # Verify roundtrip
     parsed_meta, _ = parse_frontmatter(Path(args.output))

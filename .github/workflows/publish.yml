@@ -22,7 +22,12 @@ jobs:
         run: pip install pyyaml
 
       - name: Assemble registry
-        run: python3 scripts/assemble-registry.py --output registry.md
+        run: |
+          python3 scripts/assemble-registry.py \
+            --output registry.md \
+            --cdn-base https://cdn.diaryx.org \
+            --rewrite-artifact-urls \
+            --artifact-plan-out artifact-plan.json
 
       - name: Validate registry
         run: |
@@ -34,6 +39,83 @@ jobs:
           assert meta['schema_version'] == 2
           print(f'Registry valid: {len(meta[\"plugins\"])} plugins')
           "
+
+      - name: Upload plugin artifacts to CDN
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          import subprocess
+          import tempfile
+          import urllib.request
+          from pathlib import Path
+
+          plan = json.loads(Path("artifact-plan.json").read_text(encoding="utf-8"))
+          endpoint = os.environ["R2_ENDPOINT"]
+          bucket = os.environ["R2_BUCKET"]
+
+          if not plan:
+              print("No plugin artifacts listed in artifact-plan.json")
+              raise SystemExit(0)
+
+          for item in plan:
+              plugin_id = item["id"]
+              source_url = item["source_url"]
+              s3_key = item["s3_key"]
+              expected_sha = (item.get("sha256") or "").strip().lower().removeprefix("sha256:")
+              expected_size = item.get("size")
+
+              print(f"Downloading {plugin_id} from {source_url}")
+              req = urllib.request.Request(
+                  source_url,
+                  headers={"User-Agent": "diaryx-plugin-registry/1.0"},
+              )
+              with urllib.request.urlopen(req, timeout=180) as response:
+                  data = response.read()
+
+              actual_size = len(data)
+              actual_sha = hashlib.sha256(data).hexdigest()
+
+              if isinstance(expected_size, int) and expected_size > 0 and actual_size != expected_size:
+                  raise SystemExit(
+                      f"Size mismatch for {plugin_id}: expected {expected_size}, got {actual_size}"
+                  )
+              if expected_sha and actual_sha != expected_sha:
+                  raise SystemExit(
+                      f"SHA-256 mismatch for {plugin_id}: expected {expected_sha}, got {actual_sha}"
+                  )
+
+              with tempfile.NamedTemporaryFile(delete=False) as tmp:
+                  tmp.write(data)
+                  tmp_path = tmp.name
+
+              try:
+                  subprocess.check_call(
+                      [
+                          "aws",
+                          "s3",
+                          "cp",
+                          tmp_path,
+                          f"s3://{bucket}/{s3_key}",
+                          "--endpoint-url",
+                          endpoint,
+                          "--content-type",
+                          "application/wasm",
+                          "--cache-control",
+                          "public, max-age=31536000, immutable",
+                      ]
+                  )
+              finally:
+                  os.unlink(tmp_path)
+
+              print(f"Uploaded s3://{bucket}/{s3_key}")
+          PY
 
       - name: Upload to CDN
         env:
