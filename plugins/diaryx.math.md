@@ -2,7 +2,7 @@
 title: "Math"
 description: "LaTeX math rendering with inline ($...$) and block ($$...$$) support"
 id: "diaryx.math"
-version: "0.1.1"
+version: "0.1.2"
 author: "Diaryx Team"
 license: "PolyForm Shield 1.0.0"
 repository: "https://github.com/diaryx-org/plugin-math"
@@ -10,10 +10,10 @@ categories: ["editor", "formatting"]
 tags: ["math", "latex", "editor"]
 capabilities: ["editor_extension"]
 artifact:
-  url: "https://github.com/diaryx-org/plugin-math/releases/download/v0.1.1/diaryx_math_extism.wasm"
-  sha256: "6e07960272b21e6db47b31f4947680af24e6fb369f4c959c623941270cbce013"
-  size: 418696
-  published_at: "2026-03-10T18:24:29Z"
+  url: "https://github.com/diaryx-org/plugin-math/releases/download/v0.1.2/diaryx_math_extism.wasm"
+  sha256: "f9ba2463700d18c3b1e8f7d36f3818fb65047997eb877eb2b31c118bd7f1e440"
+  size: 419818
+  published_at: "2026-03-15T15:26:31Z"
 ui:
   - slot: EditorExtension
     id: mathInline
