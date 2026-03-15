@@ -2,7 +2,7 @@
 title: "AI Assistant"
 description: "AI chat assistant powered by OpenAI-compatible APIs"
 id: "diaryx.ai"
-version: "0.1.0"
+version: "0.1.1"
 author: "Diaryx Team"
 license: "PolyForm Shield 1.0.0"
 repository: "https://github.com/diaryx-org/plugin-ai"
@@ -10,10 +10,10 @@ categories: ["assistant", "writing"]
 tags: ["ai", "chat", "assistant"]
 capabilities: ["custom_commands"]
 artifact:
-  url: "https://github.com/diaryx-org/plugin-ai/releases/download/v0.1.0/diaryx_ai_extism.wasm"
-  sha256: "52dc1d255a88c571199e327fa968aa9d88e2cae9bb9e8f6afbeb1b11570d104c"
-  size: 379567
-  published_at: "2026-03-05T00:18:50Z"
+  url: "https://github.com/diaryx-org/plugin-ai/releases/download/v0.1.1/diaryx_ai_extism.wasm"
+  sha256: "5cd021164bf4d11d91faeaa3ac2479e93035359aab1f7c2c7aa56601c6f4cbaa"
+  size: 445085
+  published_at: "2026-03-15T15:26:25Z"
 ui:
   - slot: ToolbarButton
     id: ai-chat-toggle
