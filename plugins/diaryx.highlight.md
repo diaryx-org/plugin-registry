@@ -1,13 +1,13 @@
 ---
 title: "Highlight"
-description: ""
+description: "Colored highlights for your notes!"
 id: "diaryx.highlight"
 version: "0.1.3"
 author: "Diaryx Team"
 license: "PolyForm Shield 1.0.0"
 repository: "https://github.com/diaryx-org/plugin-highlight"
-categories: []
-tags: []
+categories: ["markdown", "editor", "colors", "highlight"]
+tags: ["highlights", "markdown"]
 capabilities: []
 artifact:
   url: "https://github.com/diaryx-org/plugin-highlight/releases/download/v0.1.3/diaryx_highlight_extism.wasm"
@@ -16,4 +16,4 @@ artifact:
   published_at: "2026-03-16T22:24:01Z"
 ---
 
-TODO: add description
+The Diaryx Highlight plugin allows you to color up your notes with a beautiful palette of 10 colors.
