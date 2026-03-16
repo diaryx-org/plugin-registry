@@ -2,7 +2,7 @@
 title: "Spoiler"
 description: "Discord-style ||spoiler|| syntax to hide text until clicked"
 id: "diaryx.spoiler"
-version: "0.1.3"
+version: "0.1.5"
 author: "Diaryx Team"
 license: "PolyForm Shield 1.0.0"
 repository: "https://github.com/diaryx-org/plugin-spoiler"
@@ -10,10 +10,10 @@ categories: ["editor", "formatting"]
 tags: ["spoiler", "markdown", "editor"]
 capabilities: ["editor_extension"]
 artifact:
-  url: "https://github.com/diaryx-org/plugin-spoiler/releases/download/v0.1.3/diaryx_spoiler_extism.wasm"
-  sha256: "0606eb800b4b8e8df96c14428e70fdc7fa1d0cac28174b46fd09fa333f3bfeb6"
-  size: 182940
-  published_at: "2026-03-15T16:11:13Z"
+  url: "https://github.com/diaryx-org/plugin-spoiler/releases/download/v0.1.5/diaryx_spoiler_extism.wasm"
+  sha256: "06dca8ed4cdb01c8d7f26cf011560049a3a19ce6bb095eae199526feeaa93d84"
+  size: 189229
+  published_at: "2026-03-16T18:36:46Z"
 ui:
   - slot: EditorExtension
     id: spoiler
