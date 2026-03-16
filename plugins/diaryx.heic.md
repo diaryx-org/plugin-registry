@@ -1,13 +1,13 @@
 ---
 title: "Heic"
-description: ""
+description: "Support for HEIC images in Diaryx"
 id: "diaryx.heic"
 version: "0.1.0"
 author: "Diaryx Team"
 license: "PolyForm Shield 1.0.0"
 repository: "https://github.com/diaryx-org/plugin-heic"
-categories: []
-tags: []
+categories: ["transcoder", "images"]
+tags: ["HEIC", "transcoder", "images", "apple"]
 capabilities: []
 artifact:
   url: "https://github.com/diaryx-org/plugin-heic/releases/download/v0.1.0/diaryx_heic_extism.wasm"
@@ -16,4 +16,4 @@ artifact:
   published_at: "2026-03-16T22:26:14Z"
 ---
 
-TODO: add description
+This plugin provides support for HEIC images in Diaryx
