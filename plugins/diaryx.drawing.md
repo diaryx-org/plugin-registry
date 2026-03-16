@@ -1,13 +1,13 @@
 ---
 title: "Drawing"
-description: ""
+description: "Draw a picture in your notes!"
 id: "diaryx.drawing"
 version: "0.1.3"
 author: "Diaryx Team"
 license: "PolyForm Shield 1.0.0"
 repository: "https://github.com/diaryx-org/plugin-drawing"
-categories: []
-tags: []
+categories: ["drawing", "colors"]
+tags: ["picture", "colors", "drawing"]
 capabilities: []
 artifact:
   url: "https://github.com/diaryx-org/plugin-drawing/releases/download/v0.1.3/diaryx_drawing_extism.wasm"
@@ -16,4 +16,4 @@ artifact:
   published_at: "2026-03-16T22:24:08Z"
 ---
 
-TODO: add description
+This plugin lets you draw a picture in your notes using the wonderful `perfect-freehand` library!
