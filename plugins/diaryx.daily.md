@@ -2,7 +2,7 @@
 title: "Daily"
 description: "Daily entry plugin with date hierarchy, navigation, and CLI surface"
 id: "diaryx.daily"
-version: "0.1.3"
+version: "0.1.6"
 author: "Diaryx Team"
 license: "PolyForm Shield 1.0.0"
 repository: "https://github.com/diaryx-org/plugin-daily"
@@ -10,10 +10,10 @@ categories: ["productivity", "journaling"]
 tags: ["daily", "journal", "calendar"]
 capabilities: ["workspace_events", "custom_commands"]
 artifact:
-  url: "https://github.com/diaryx-org/plugin-daily/releases/download/v0.1.3/diaryx_daily_extism.wasm"
-  sha256: "85c5a3e3ede24a0fb9cf9483b7b1272525eab864d1041d5cc16ee8f485d7c069"
-  size: 887416
-  published_at: "2026-03-15T16:11:24Z"
+  url: "https://github.com/diaryx-org/plugin-daily/releases/download/v0.1.6/diaryx_daily_extism.wasm"
+  sha256: "8d157c1d2af6fb7c0810776263f0995c0b563def7931cbcb53f186ab34e38992"
+  size: 889485
+  published_at: "2026-03-16T18:44:41Z"
 ui:
   - slot: SidebarTab
     id: daily-panel
