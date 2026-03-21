@@ -2,7 +2,7 @@
 title: "Live Share"
 description: "Real-time guest sharing for Diaryx workspaces"
 id: "diaryx.share"
-version: "0.1.0"
+version: "0.2.0"
 author: "Diaryx Team"
 license: "PolyForm Shield 1.0.0"
 repository: "https://github.com/diaryx-org/plugin-share"
@@ -10,10 +10,10 @@ categories: ["collaboration"]
 tags: ["share", "realtime", "guest"]
 capabilities: ["workspace_events", "file_events", "sync_transport", "custom_commands"]
 artifact:
-  url: ""
-  sha256: ""
-  size: 0
-  published_at: ""
+  url: "https://github.com/diaryx-org/plugin-share/releases/download/v0.2.0/diaryx_share_extism.wasm"
+  sha256: "c31b45a021901e2e2cb788f331a0839ec3a6bdbe39b6c9e1ed63b24f8384c876"
+  size: 1053360
+  published_at: "2026-03-21T22:44:46Z"
 ui:
   - slot: SettingsTab
     id: share-settings
