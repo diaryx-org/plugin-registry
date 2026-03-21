@@ -21,6 +21,15 @@ ui:
   - slot: SettingsTab
     id: s3-storage-settings
     label: "S3 Storage"
+requested_permissions:
+  defaults:
+    http_requests:
+      include: ["all"]
+    plugin_storage:
+      include: ["all"]
+  reasons:
+    http_requests: "Communicate with the configured S3-compatible object storage endpoint."
+    plugin_storage: "Persist S3 connection settings for the current workspace."
 ---
 
 S3-compatible storage backend.

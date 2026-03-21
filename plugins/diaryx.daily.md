@@ -27,6 +27,21 @@ ui:
 cli:
   - name: daily
     about: "Daily entry commands"
+requested_permissions:
+  defaults:
+    read_files:
+      include: ["all"]
+    edit_files:
+      include: ["all"]
+    create_files:
+      include: ["all"]
+    plugin_storage:
+      include: ["all"]
+  reasons:
+    read_files: "Read daily entries, index files, and optional templates from the workspace."
+    edit_files: "Update existing year, month, and daily entry files when navigating and organizing the daily hierarchy."
+    create_files: "Create missing year, month, and daily entry files for new dates."
+    plugin_storage: "Persist daily plugin configuration for the current workspace."
 ---
 
 Daily entry workflow and navigation.

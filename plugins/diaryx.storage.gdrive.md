@@ -21,6 +21,15 @@ ui:
   - slot: SettingsTab
     id: gdrive-storage-settings
     label: "Google Drive"
+requested_permissions:
+  defaults:
+    http_requests:
+      include: ["googleapis.com"]
+    plugin_storage:
+      include: ["all"]
+  reasons:
+    http_requests: "Communicate with Google Drive and Google OAuth API endpoints."
+    plugin_storage: "Persist Google Drive settings and cached workspace metadata."
 ---
 
 Google Drive storage backend.

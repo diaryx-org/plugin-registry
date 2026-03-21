@@ -2,7 +2,7 @@
 """Assemble plugins/*.md into a single registry.md and upload to CDN.
 
 Usage:
-    python3 scripts/assemble-registry.py [--output registry.md] [--cdn-base https://cdn.diaryx.org]
+    python3 scripts/assemble-registry.py [--output registry.md] [--cdn-base https://app.diaryx.org/cdn]
 
 Walks plugins/*.md, parses YAML frontmatter, validates required fields,
 and produces a single registry.md with schema_version 2.
@@ -197,7 +197,7 @@ def main():
     parser = argparse.ArgumentParser(description="Assemble Diaryx plugin registry")
     parser.add_argument("--plugins-dir", default="plugins", help="Directory containing plugin .md files")
     parser.add_argument("--output", default="registry.md", help="Output registry file")
-    parser.add_argument("--cdn-base", default="https://cdn.diaryx.org", help="CDN base URL")
+    parser.add_argument("--cdn-base", default="https://app.diaryx.org/cdn", help="CDN base URL")
     parser.add_argument(
         "--rewrite-artifact-urls",
         action="store_true",

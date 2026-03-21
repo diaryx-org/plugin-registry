@@ -1,6 +1,6 @@
 ---
 title: "Sync"
-description: "Real-time CRDT sync across devices"
+description: "Real-time multi-device sync across Diaryx workspaces"
 id: "diaryx.sync"
 version: "0.2.0"
 author: "Diaryx Team"
@@ -19,9 +19,6 @@ ui:
     id: sync-settings
     label: "Sync"
   - slot: SidebarTab
-    id: share
-    label: "Share"
-  - slot: SidebarTab
     id: snapshots
     label: "Snapshots"
   - slot: SidebarTab
@@ -36,6 +33,27 @@ ui:
 cli:
   - name: sync
     about: "Sync workspace across devices"
+requested_permissions:
+  defaults:
+    plugin_storage:
+      include: ["all"]
+    http_requests:
+      include: ["all"]
+    read_files:
+      include: ["all"]
+    edit_files:
+      include: ["all"]
+    create_files:
+      include: ["all"]
+    delete_files:
+      include: ["all"]
+  reasons:
+    plugin_storage: "Store sync configuration and CRDT state."
+    http_requests: "Communicate with the configured sync server."
+    read_files: "Read workspace files for snapshotting, reconciliation, and sync."
+    edit_files: "Apply remote changes to existing workspace files."
+    create_files: "Create files received from remote sync or restored from snapshots."
+    delete_files: "Delete files removed by remote sync or snapshot restore operations."
 ---
 
-Realtime multi-device workspace sync.
+Realtime multi-device workspace sync, snapshots, history, and workspace-provider flows.

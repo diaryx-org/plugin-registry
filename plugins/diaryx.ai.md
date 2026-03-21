@@ -28,11 +28,17 @@ requested_permissions:
   defaults:
     http_requests:
       include: ["openrouter.ai"]
+    read_files:
+      include: ["all"]
+    edit_files:
+      include: ["all"]
     plugin_storage:
       include: ["all"]
   reasons:
     http_requests: "Send chat requests to the configured OpenAI-compatible API endpoint."
     plugin_storage: "Persist conversation history and plugin settings between sessions."
+    read_files: "Read existing conversation files so AI chat saves preserve Diaryx frontmatter and hierarchy metadata."
+    edit_files: "Update the selected workspace conversation file with the latest chat transcript."
 ---
 
 Chat assistant plugin for Diaryx.

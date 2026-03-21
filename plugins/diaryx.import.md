@@ -14,6 +14,10 @@ artifact:
   sha256: "387849493b7b19851046b9e9ab7c20e7eb391f4bcf01639d0ba1c1a99f3109ae"
   size: 1224198
   published_at: "2026-03-16T18:37:15Z"
+ui:
+  - slot: SettingsTab
+    id: import-settings
+    label: "Import"
 cli:
   - name: import
     about: "Import entries from external formats"
