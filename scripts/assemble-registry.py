@@ -115,6 +115,13 @@ def assemble_registry(
         if "artifact" in meta and isinstance(meta["artifact"], dict):
             artifact = dict(meta["artifact"])
             source_url = str(artifact.get("url") or "").strip()
+            artifact_size = artifact.get("size") or 0
+
+            # Skip plugins with placeholder artifacts (no URL or zero size).
+            if not source_url or not artifact_size:
+                print(f"  SKIP: {md_file.name}: placeholder artifact (no url or size=0)", file=sys.stderr)
+                continue
+
             if rewrite_artifact_urls and source_url:
                 filename = artifact_filename_from_url(source_url, meta["id"])
                 s3_key = f"plugins/artifacts/{meta['id']}/{meta['version']}/{filename}"
