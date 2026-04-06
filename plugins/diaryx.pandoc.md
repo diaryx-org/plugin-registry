@@ -1,13 +1,13 @@
 ---
 title: "Pandoc"
-description: ""
+description: "Convert your documents to any file format"
 id: "diaryx.pandoc"
 version: "0.1.1"
 author: "Diaryx Team"
 license: "PolyForm Shield 1.0.0"
 repository: "https://github.com/diaryx-org/plugin-pandoc"
-categories: []
-tags: []
+categories: ["export"]
+tags: ["pandoc", "export", "conversion"]
 capabilities: []
 artifact:
   url: "https://github.com/diaryx-org/plugin-pandoc/releases/download/v0.1.1/diaryx_pandoc_extism.wasm"
@@ -16,4 +16,4 @@ artifact:
   published_at: "2026-04-06T22:50:48Z"
 ---
 
-TODO: add description
+This experimental plugin uses Pandoc for file conversion.
