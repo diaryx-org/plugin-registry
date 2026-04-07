@@ -10,10 +10,10 @@ categories: ["sync", "collaboration"]
 tags: ["sync", "crdt", "realtime"]
 capabilities: ["workspace_events", "file_events", "crdt_commands", "sync_transport", "custom_commands"]
 artifact:
-  url: "https://github.com/diaryx-org/plugin-sync/releases/download/v0.2.11/diaryx_sync_extism.wasm"
-  sha256: "1d67c6fbd0f880b9e36f737eed5c0d66f7b79c2e029bf77489331708dd524ebb"
-  size: 987242
-  published_at: "2026-04-06T19:39:14Z"
+  url: "https://github.com/diaryx-org/diaryx/releases/download/diaryx.sync/v0.2.11/diaryx_sync_extism.wasm"
+  sha256: "907b5338683a7206534009e7f62adf803655107218118243b611b9cac4e6ccdc"
+  size: 729869
+  published_at: "2026-04-07T23:44:37Z"
 ui:
   - slot: SettingsTab
     id: sync-settings
