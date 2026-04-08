@@ -25,9 +25,6 @@ ui:
   - slot: BlockPickerItem
     id: templating-if-else
     label: "If / Else"
-  - slot: BlockPickerItem
-    id: templating-for-audience
-    label: "For Audience"
 requested_permissions:
   defaults:
     read_files:
@@ -48,4 +45,4 @@ requested_permissions:
     plugin_storage: "Persist templating plugin configuration for the current workspace."
 ---
 
-Creation-time and render-time templating.
+Creation-time templating plus frontmatter-driven inline rendering with audience-aware `:vis` directive filtering.
