@@ -10,10 +10,10 @@ categories: ["publish", "export"]
 tags: ["publish", "export", "html"]
 capabilities: ["workspace_events", "custom_commands"]
 artifact:
-  url: "https://github.com/diaryx-org/plugin-publish/releases/download/v0.2.5/diaryx_publish_extism.wasm"
-  sha256: "6503a0591b923d2e38d0ef10537d1ee8311ffb7989041e5ff1fada90cd849bd6"
-  size: 2807456
-  published_at: "2026-04-06T19:41:09Z"
+  url: "https://github.com/diaryx-org/diaryx/releases/download/diaryx.publish/v0.2.5/diaryx_publish_extism.wasm"
+  sha256: "89dbee6b68795e2046cb3d7220c1fa582feb59be69c0bd766cf3058feaa69a45"
+  size: 2227899
+  published_at: "2026-04-09T05:12:43Z"
 ui:
   - slot: SidebarTab
     id: publish-panel
