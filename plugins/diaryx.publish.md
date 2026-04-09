@@ -2,7 +2,7 @@
 title: "Publish"
 description: "Export and publish content with optional format conversion"
 id: "diaryx.publish"
-version: "0.2.6"
+version: "0.2.7"
 author: "Diaryx Team"
 license: "PolyForm Shield 1.0.0"
 repository: "https://github.com/diaryx-org/plugin-publish"
@@ -10,10 +10,10 @@ categories: ["publish", "export"]
 tags: ["publish", "export", "html"]
 capabilities: ["workspace_events", "custom_commands"]
 artifact:
-  url: "https://github.com/diaryx-org/diaryx/releases/download/diaryx.publish/v0.2.6/diaryx_publish_extism.wasm"
-  sha256: "663ca6a443dc1cae0a424d4e816ca84876d96fc904d1e267cc8d0d08c5f4555c"
-  size: 2227916
-  published_at: "2026-04-09T05:24:20Z"
+  url: "https://github.com/diaryx-org/diaryx/releases/download/diaryx.publish/v0.2.7/diaryx_publish_extism.wasm"
+  sha256: "6cd288fb729e530f3a0a8578909a4cbeccde3e5e9293d83cc13cd4e7f3b9d112"
+  size: 2227952
+  published_at: "2026-04-09T05:34:34Z"
 ui:
   - slot: SidebarTab
     id: publish-panel
