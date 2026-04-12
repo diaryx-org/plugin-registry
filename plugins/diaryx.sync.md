@@ -2,7 +2,7 @@
 title: "Sync"
 description: "Real-time multi-device sync across Diaryx workspaces"
 id: "diaryx.sync"
-version: "0.2.14"
+version: "0.2.15"
 author: "Diaryx Team"
 license: "PolyForm Shield 1.0.0"
 repository: "https://github.com/diaryx-org/plugin-sync"
@@ -10,10 +10,10 @@ categories: ["sync", "collaboration"]
 tags: ["sync", "crdt", "realtime"]
 capabilities: ["workspace_events", "file_events", "crdt_commands", "sync_transport", "custom_commands"]
 artifact:
-  url: "https://github.com/diaryx-org/diaryx/releases/download/diaryx.sync/v0.2.14/diaryx_sync_extism.wasm"
-  sha256: "7f52f78d85f2b1c42ac80c75b7991f864920504f083d1a1c29c8f0e519ed7175"
-  size: 733768
-  published_at: "2026-04-10T21:26:29Z"
+  url: "https://github.com/diaryx-org/diaryx/releases/download/diaryx.sync/v0.2.15/diaryx_sync_extism.wasm"
+  sha256: "15672b26b4dbd1fd949d62d4a4f1cdf3db23cfdcb709cf17de3ca06463087103"
+  size: 734288
+  published_at: "2026-04-11T20:22:35Z"
 ui:
   - slot: SettingsTab
     id: sync-settings
