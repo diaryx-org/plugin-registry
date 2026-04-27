@@ -71,6 +71,37 @@ jobs:
               expected_sha = (item.get("sha256") or "").strip().lower().removeprefix("sha256:")
               expected_size = item.get("size")
 
+              head = subprocess.run(
+                  [
+                      "aws",
+                      "s3api",
+                      "head-object",
+                      "--bucket",
+                      bucket,
+                      "--key",
+                      s3_key,
+                      "--endpoint-url",
+                      endpoint,
+                  ],
+                  capture_output=True,
+              )
+              if head.returncode == 0:
+                  remote_size = None
+                  try:
+                      remote_size = json.loads(head.stdout).get("ContentLength")
+                  except json.JSONDecodeError:
+                      pass
+                  if (
+                      not isinstance(expected_size, int)
+                      or expected_size <= 0
+                      or remote_size == expected_size
+                  ):
+                      print(f"Skipping {plugin_id}: s3://{bucket}/{s3_key} already present")
+                      continue
+                  print(
+                      f"Re-uploading {plugin_id}: remote size {remote_size} != expected {expected_size}"
+                  )
+
               print(f"Downloading {plugin_id} from {source_url}")
               req = urllib.request.Request(
                   source_url,
