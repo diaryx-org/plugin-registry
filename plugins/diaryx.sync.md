@@ -1,59 +1,75 @@
 ---
-title: "Sync"
-description: "Real-time multi-device sync across Diaryx workspaces"
-id: "diaryx.sync"
-version: "0.2.25"
-author: "Diaryx Team"
-license: "PolyForm Shield 1.0.0"
-repository: "https://github.com/diaryx-org/plugin-sync"
-categories: ["sync", "collaboration"]
-tags: ["sync", "crdt", "realtime"]
-capabilities: ["workspace_events", "file_events", "crdt_commands", "sync_transport", "custom_commands"]
+title: Sync
+description: Real-time multi-device sync across Diaryx workspaces
+id: diaryx.sync
+version: 0.2.26
+author: Diaryx Team
+license: PolyForm Shield 1.0.0
+repository: https://github.com/diaryx-org/plugin-sync
+categories:
+- sync
+- collaboration
+tags:
+- sync
+- crdt
+- realtime
+capabilities:
+- workspace_events
+- file_events
+- crdt_commands
+- sync_transport
+- custom_commands
 artifact:
-  url: "https://github.com/diaryx-org/diaryx/releases/download/diaryx.sync/v0.2.25/diaryx_sync_extism.wasm"
-  sha256: "bd9d7db80564ed7cbcf61f07323bd4c97cf86694e4d14a7341b34853425ac2ba"
-  size: 766202
-  published_at: "2026-04-18T01:10:00Z"
+  url: https://github.com/diaryx-org/diaryx/releases/download/diaryx.sync/v0.2.26/diaryx_sync_extism.wasm
+  sha256: 39637a8189c8c6e7f77c9bc7a34eb29d1630ae1e0ecee54030a46a425397cb1d
+  size: 802307
+  published_at: 2026-04-27T17:13:53Z
 ui:
-  - slot: SettingsTab
-    id: sync-settings
-    label: "Sync"
-  - slot: SidebarTab
-    id: snapshots
-    label: "Snapshots"
-  - slot: SidebarTab
-    id: history
-    label: "History"
-  - slot: StatusBarItem
-    id: sync-status
-    label: "Sync"
-  - slot: WorkspaceProvider
-    id: diaryx.sync
-    label: "Diaryx Sync"
+- slot: SettingsTab
+  id: sync-settings
+  label: Sync
+- slot: SidebarTab
+  id: snapshots
+  label: Snapshots
+- slot: SidebarTab
+  id: history
+  label: History
+- slot: StatusBarItem
+  id: sync-status
+  label: Sync
+- slot: WorkspaceProvider
+  id: diaryx.sync
+  label: Diaryx Sync
 cli:
-  - name: sync
-    about: "Sync workspace across devices"
+- name: sync
+  about: Sync workspace across devices
 requested_permissions:
   defaults:
     plugin_storage:
-      include: ["all"]
+      include:
+      - all
     http_requests:
-      include: ["all"]
+      include:
+      - all
     read_files:
-      include: ["all"]
+      include:
+      - all
     edit_files:
-      include: ["all"]
+      include:
+      - all
     create_files:
-      include: ["all"]
+      include:
+      - all
     delete_files:
-      include: ["all"]
+      include:
+      - all
   reasons:
-    plugin_storage: "Store sync configuration and CRDT state."
-    http_requests: "Communicate with the configured sync server."
-    read_files: "Read workspace files for snapshotting, reconciliation, and sync."
-    edit_files: "Apply remote changes to existing workspace files."
-    create_files: "Create files received from remote sync or restored from snapshots."
-    delete_files: "Delete files removed by remote sync or snapshot restore operations."
+    plugin_storage: Store sync configuration and CRDT state.
+    http_requests: Communicate with the configured sync server.
+    read_files: Read workspace files for snapshotting, reconciliation, and sync.
+    edit_files: Apply remote changes to existing workspace files.
+    create_files: Create files received from remote sync or restored from snapshots.
+    delete_files: Delete files removed by remote sync or snapshot restore operations.
 ---
 
 Realtime multi-device workspace sync, snapshots, history, and workspace-provider flows.
