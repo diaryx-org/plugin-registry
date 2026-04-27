@@ -2,7 +2,7 @@
 title: Sync
 description: Real-time multi-device sync across Diaryx workspaces
 id: diaryx.sync
-version: 0.2.26
+version: 0.2.27
 author: Diaryx Team
 license: PolyForm Shield 1.0.0
 repository: https://github.com/diaryx-org/plugin-sync
@@ -20,10 +20,10 @@ capabilities:
 - sync_transport
 - custom_commands
 artifact:
-  url: https://github.com/diaryx-org/diaryx/releases/download/diaryx.sync/v0.2.26/diaryx_sync_extism.wasm
-  sha256: 39637a8189c8c6e7f77c9bc7a34eb29d1630ae1e0ecee54030a46a425397cb1d
-  size: 802307
-  published_at: 2026-04-27T17:13:53Z
+  url: https://github.com/diaryx-org/diaryx/releases/download/diaryx.sync/v0.2.27/diaryx_sync_extism.wasm
+  sha256: 488f9b75f9af8d3443fd6283f34a01ad41d603d63202ce1b847bf003680a0881
+  size: 801697
+  published_at: 2026-04-27T23:53:35Z
 ui:
 - slot: SettingsTab
   id: sync-settings
